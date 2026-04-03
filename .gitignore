@@ -1,0 +1,8 @@
+node_modules/
+dist/
+*.exe
+.DS_Store
+.buddy-reroller/
+
+# Pro module (proprietary, not open-source)
+src/pro/pro-impl.ts
