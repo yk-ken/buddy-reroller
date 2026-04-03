@@ -7,7 +7,7 @@ English | [中文](./README_CN.md)
 ## Features
 
 - **🔍 Targeted Search** — Filter by species, rarity, eye, hat, shiny status with real-time WebSocket progress
-- **📦 Collection** — Save favorites with AES-256-GCM encrypted local storage, no limit
+- **📦 Collection** — Save favorites to local storage, no limit
 - **📖 Encyclopedia** — Browse all 18 species, 5 rarities, stats, hats, and eyes
 - **🎨 Dark Game Theme** — Clean UI with ASCII art sprites and animated companion display
 - **🔒 Pro Module** — Perfect legendary search (separate module, not included)
@@ -57,14 +57,14 @@ Once found, the new `userID` is written to `~/.claude.json`. Restart Claude Code
 
 - **Runtime**: [Bun](https://bun.sh) (HTTP Server, WebSocket, `bun build --compile`)
 - **Frontend**: React 19 with dark game-themed CSS
-- **Crypto**: AES-256-GCM for collection storage (SHA-256 key derivation from machine fingerprint)
+- **Storage**: Encrypted local collection storage
 - **Build**: Single-file executable via `bun build --compile`
 
 ## Project Structure
 
 ```
 src/
-├── core/           # PRNG, companion rolling, sprites, config, crypto
+├── core/           # PRNG, companion rolling, sprites, config, storage
 ├── pro/            # Pro module (interface + noop fallback + loader)
 ├── api/            # HTTP handlers + WebSocket search engine
 └── server.ts       # Bun HTTP server entry point
@@ -72,7 +72,7 @@ frontend/
 ├── components/     # React components (Search, Collection, Encyclopedia)
 ├── App.tsx         # Main app with tabs
 └── styles.css      # Dark game theme
-tests/              # 34 tests (buddy, sprites, crypto, claude-config)
+tests/              # 34 tests (buddy, sprites, config, storage)
 scripts/
 └── build.ts        # Build script for single-file exe
 ```
