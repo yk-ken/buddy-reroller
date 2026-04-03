@@ -2,6 +2,8 @@
 
 A Bun-based web app for customizing your Claude Code `/buddy` companion pet. Find the perfect companion through targeted search, preview before applying, and build your collection.
 
+English | [中文](./README_CN.md)
+
 ## Features
 
 - **🔍 Targeted Search** — Filter by species, rarity, eye, hat, shiny status with real-time WebSocket progress
