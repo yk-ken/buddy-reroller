@@ -4,6 +4,12 @@ A Bun-based web app for customizing your Claude Code `/buddy` companion pet. Fin
 
 English | [中文](./README_CN.md)
 
+<p align="center">
+  <img src="./docs/images/showcase-dragon.png" alt="Pickle — a Legendary Shiny Dragon found with Pro search" width="480">
+  <br>
+  <em>Pickle — Legendary ✦ Shiny Dragon · CHAOS 100</em>
+</p>
+
 ## Features
 
 - **🔍 Targeted Search** — Filter by species, rarity, eye, hat, shiny status with real-time WebSocket progress
@@ -51,7 +57,7 @@ Once found, the new `userID` is written to `~/.claude.json`. Restart Claude Code
 - **18 Species**: duck, goose, blob, cat, dragon, octopus, owl, penguin, turtle, snail, ghost, axolotl, capybara, cactus, robot, rabbit, mushroom, chonk
 - **6 Eyes**: · ✦ × ◉ @ °
 - **8 Hats**: none, crown, tophat, propeller, halo, wizard, beanie, tinyduck
-- **5 Stats**: DEBUGGING, PATIENCE, CHAOS, WISDOM, SNACK (each companion has a peak and dump stat)
+- **5 Stats**: DEBUGGING, PATIENCE, CHAOS, WISDOM, SNARK (each companion has a peak and dump stat)
 
 ## Tech Stack
 
@@ -77,9 +83,20 @@ scripts/
 └── build.ts        # Build script for single-file exe
 ```
 
+## Download
+
+Pre-built executables are available on the [Releases](https://github.com/yourusername/buddy-reroller/releases) page:
+- **Windows**: `buddy-reroller.exe`
+- **macOS**: `buddy-reroller`
+- **Linux**: `buddy-reroller`
+
+**Note**: Release builds do not include Pro functionality (perfect legendary search). Pro features are only available in local builds with the proprietary `pro-impl.ts` module.
+
 ## Pro Feature
 
-The Pro module enables **perfect legendary search** — finding companions where all stats hit their exact theoretical maximums for legendary rarity. This feature uses a separate `pro-impl.ts` module that is **not included** in this repository.
+The Pro module enables **perfect legendary search** — finding companions where all stats hit their exact theoretical maximums for legendary rarity, with peak/dump stat filtering. This feature uses a separate `pro-impl.ts` module that is **not included** in this repository.
+
+**Get Pro:** Purchase a permanent activation code at [爱发电](https://ifdian.net/item/0cfbb586300c11f1aa1452540025c377). Enter the `BR-` key in the app's Settings tab to unlock instantly.
 
 The open-source version includes full functionality for:
 - Normal search with all criteria (species, rarity, eye, hat, shiny)

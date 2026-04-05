@@ -54,8 +54,8 @@ function rollStats(rng: () => number, rarity: Rarity): { stats: Record<string, n
   return { stats, peakStat, dumpStat };
 }
 
-export function rollCompanion(userId: string): Companion {
-  const seed = hashSeed(userId + SALT);
+/** Generate companion directly from a numeric seed (no hashing) */
+export function rollCompanionFromSeed(seed: number): Companion {
   const rng = mulberry32(seed);
   const rarity = rollRarity(rng);
   const species = pick(rng, SPECIES);
@@ -74,4 +74,16 @@ export function rollCompanion(userId: string): Companion {
     peakStat,
     dumpStat,
   };
+}
+
+/** Check if a seed produces a legendary (fast — only 1 PRNG call) */
+export function isSeedLegendary(seed: number): boolean {
+  const rng = mulberry32(seed);
+  const r = rng();
+  return r >= 0.99; // legendary is last in rollRarity (cumulative 99-100/100)
+}
+
+export function rollCompanion(userId: string): Companion {
+  const seed = hashSeed(userId + SALT);
+  return rollCompanionFromSeed(seed);
 }

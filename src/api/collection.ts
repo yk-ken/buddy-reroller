@@ -48,6 +48,8 @@ export async function handleCollection(req: Request): Promise<Response> {
     const entries = readCollection();
     const entry = entries.find(e => e.id === id);
     if (!entry) return Response.json({ error: "Not found" }, { status: 404 });
+    // Reset all other entries' applied state — only one can be active at a time
+    for (const e of entries) e.applied = false;
     backupConfig(getClaudeConfigPath());
     applyUserID(entry.userID, getClaudeConfigPath());
     entry.applied = true;

@@ -1,5 +1,6 @@
 // src/pro/index.ts — Pro 模块加载器（开源可见）
 import type { ProModule } from "./interface";
+import { isProActivated } from "../core/license-store";
 
 let _module: ProModule | null = null;
 
@@ -16,4 +17,19 @@ export function getProModule(): ProModule {
     }
   }
   return _module!;
+}
+
+/** Check if Pro implementation is available (compiled into exe) */
+export function isProAvailable(): boolean {
+  try {
+    require("./pro-impl");
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/** Check if Pro features are unlocked (requires both binary + license) */
+export function isProUnlocked(): boolean {
+  return isProAvailable() && isProActivated();
 }

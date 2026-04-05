@@ -1,0 +1,32 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+        include:
+          - os: windows-latest
+            artifact: buddy-reroller.exe
+          - os: macos-latest
+            artifact: buddy-reroller
+          - os: ubuntu-latest
+            artifact: buddy-reroller
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: oven-sh/setup-bun@v2
+      - uses: actions/checkout@v4
+      - run: bun install
+      # Note: Pro module is not in the repo, release builds use noop fallback
+      - run: bun run build
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ matrix.artifact }}

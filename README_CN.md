@@ -4,6 +4,12 @@
 
 [English](./README.md) | 中文
 
+<p align="center">
+  <img src="./docs/images/showcase-dragon.png" alt="Pickle — 通过 Pro 搜索找到的传奇闪光龙" width="480">
+  <br>
+  <em>Pickle — 传奇 ✦ 闪光龙 · CHAOS 100</em>
+</p>
+
 ## 功能特性
 
 - **🔍 条件搜索** — 按物种、稀有度、眼睛、帽子、闪光状态筛选，WebSocket 实时显示搜索进度
@@ -51,7 +57,7 @@ bun test
 - **18 种物种**：duck、goose、blob、cat、dragon、octopus、owl、penguin、turtle、snail、ghost、axolotl、capybara、cactus、robot、rabbit、mushroom、chonk
 - **6 种眼睛**：· ✦ × ◉ @ °
 - **8 种帽子**：none、crown、tophat、propeller、halo、wizard、beanie、tinyduck
-- **5 项属性**：DEBUGGING（调试）、PATIENCE（耐心）、CHAOS（混乱）、WISDOM（智慧）、SNACK（零食）— 每只伴侣有一个巅峰属性和一个短板属性
+- **5 项属性**：DEBUGGING（调试）、PATIENCE（耐心）、CHAOS（混乱）、WISDOM（智慧）、SNARK（吐槽）— 每只伴侣有一个巅峰属性和一个短板属性
 
 ## 技术栈
 
@@ -77,9 +83,20 @@ scripts/
 └── build.ts        # 单文件 exe 构建脚本
 ```
 
+## 下载
+
+预编译的可执行文件可在 [Releases](https://github.com/yourusername/buddy-reroller/releases) 页面下载：
+- **Windows**: `buddy-reroller.exe`
+- **macOS**: `buddy-reroller`
+- **Linux**: `buddy-reroller`
+
+**注意**：Release 版本不包含 Pro 功能（满属性传奇搜索）。Pro 功能仅在本地构建且包含专有 `pro-impl.ts` 模块时可用。
+
 ## Pro 功能
 
-Pro 模块提供 **满属性传奇搜索** — 在传奇稀有度下，找到所有属性均达到理论最大值的伴侣。该功能使用独立的 `pro-impl.ts` 模块，**不包含**在本仓库中。
+Pro 模块提供 **满属性传奇搜索** — 在传奇稀有度下找到属性总和最高的伴侣，并支持指定巅峰/短板属性筛选。该功能使用独立的 `pro-impl.ts` 模块，**不包含**在本仓库中。
+
+**获取 Pro：** 在 [爱发电](https://ifdian.net/item/0cfbb586300c11f1aa1452540025c377) 购买永久激活码，在应用的设置页面输入 `BR-` 开头的密钥即可立即解锁。
 
 开源版包含完整的以下功能：
 - 常规搜索（支持物种、稀有度、眼睛、帽子、闪光等所有条件）

@@ -1,7 +1,7 @@
 // src/api/detect.ts — GET /api/detect 环境检测
 import { readClaudeConfig, getClaudeConfigPath } from "../core/claude-config";
 import { rollCompanion } from "../core/buddy";
-import { getProModule } from "../pro";
+import { getProModule, isProUnlocked } from "../pro";
 import type { EnvInfo } from "../types";
 
 export async function handleDetect(req: Request): Promise<Response> {
@@ -18,7 +18,7 @@ export async function handleDetect(req: Request): Promise<Response> {
     hasAccountUuid,
     currentUserID,
     currentCompanion,
-    isPro: getProModule().hasProBuild(),
+    isPro: isProUnlocked(),
     isSupported: !hasAccountUuid,
   };
   return Response.json(env);

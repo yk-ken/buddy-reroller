@@ -16,7 +16,7 @@ export type Eye = typeof EYES[number];
 export const HATS = ["none","crown","tophat","propeller","halo","wizard","beanie","tinyduck"] as const;
 export type Hat = typeof HATS[number];
 
-export const STAT_NAMES = ["DEBUGGING","PATIENCE","CHAOS","WISDOM","SNACK"] as const;
+export const STAT_NAMES = ["DEBUGGING","PATIENCE","CHAOS","WISDOM","SNARK"] as const;
 export type StatName = typeof STAT_NAMES[number];
 
 export const RARITY_WEIGHTS: Record<Rarity, number> = {
