@@ -90,7 +90,7 @@ scripts/
 - **macOS**: `buddy-reroller`
 - **Linux**: `buddy-reroller`
 
-**注意**：Release 版本不包含 Pro 功能（满属性传奇搜索）。Pro 功能仅在本地构建且包含专有 `pro-impl.ts` 模块时可用。
+**注意**：Pro 功能（满属性传奇搜索）已包含在所有版本中，但需要购买激活码解锁。详见下方说明。
 
 ## Pro 功能
 

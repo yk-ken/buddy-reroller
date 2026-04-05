@@ -90,7 +90,7 @@ Pre-built executables are available on the [Releases](https://github.com/youruse
 - **macOS**: `buddy-reroller`
 - **Linux**: `buddy-reroller`
 
-**Note**: Release builds do not include Pro functionality (perfect legendary search). Pro features are only available in local builds with the proprietary `pro-impl.ts` module.
+**Note**: Pro features (perfect legendary search) are included in all builds but require a license activation code. See below for details.
 
 ## Pro Feature
 
