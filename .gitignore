@@ -22,3 +22,6 @@ scripts/gen-license.ts
 # Generated license keys (never commit)
 license-keys-*.txt
 data/optimal-db.json
+
+# Internal docs (not for public)
+docs/RELEASE_PROCESS.md

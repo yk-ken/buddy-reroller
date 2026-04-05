@@ -24,8 +24,17 @@ jobs:
     steps:
       - uses: oven-sh/setup-bun@v2
       - uses: actions/checkout@v4
+      - name: Inject PRO modules
+        env:
+          PRO_IMPL: ${{ secrets.PRO_IMPL_TS }}
+          PRO_SEARCH_IMPL: ${{ secrets.PRO_SEARCH_IMPL_TS }}
+          PRO_SECRET_KEY: ${{ secrets.PRO_SECRET_KEY_TS }}
+        run: |
+          printf '%s' "$PRO_IMPL" > src/pro/pro-impl.ts
+          printf '%s' "$PRO_SEARCH_IMPL" > src/pro/pro-search-impl.ts
+          printf '%s' "$PRO_SECRET_KEY" > src/pro/secret-key.ts
+        shell: bash
       - run: bun install
-      # Note: Pro module is not in the repo, release builds use noop fallback
       - run: bun run build
       - uses: softprops/action-gh-release@v2
         with:

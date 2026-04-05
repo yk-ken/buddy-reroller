@@ -4,7 +4,7 @@ import type { CollectionEntry } from "../../src/types";
 import { useI18n } from "../i18n";
 import CompanionDisplay from "./CompanionDisplay";
 
-export default function CollectionPanel() {
+export default function CollectionPanel({ onApply }: { onApply?: () => void }) {
   const { t } = useI18n();
   const [entries, setEntries] = useState<CollectionEntry[]>([]);
   const [loading, setLoading] = useState(true);
@@ -32,6 +32,7 @@ export default function CollectionPanel() {
         return;
       }
       load();
+      onApply?.();
       alert(t("search.applied"));
     } catch {
       alert("Failed to connect to server");

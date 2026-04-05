@@ -9,13 +9,15 @@ interface Props {
   isLicenseActive?: boolean;
   showLicensePrompt?: boolean;
   onShowLicensePrompt?: () => void;
+  onApply?: () => void;
 }
 
 export default function SearchPanel({
   isPro,
   isLicenseActive = false,
   showLicensePrompt = false,
-  onShowLicensePrompt
+  onShowLicensePrompt,
+  onApply,
 }: Props) {
   const { t } = useI18n();
   const [criteria, setCriteria] = useState<SearchCriteria>({ rarity: "legendary", shiny: true });
@@ -31,6 +33,7 @@ export default function SearchPanel({
   const [phase2Elapsed, setPhase2Elapsed] = useState(0);
   const [notFound, setNotFound] = useState(false);
   const [error, setError] = useState("");
+  const [proLockedNotice, setProLockedNotice] = useState(false);
   const wsRef = useRef<WebSocket | null>(null);
   const phase1ElapsedRef = useRef(0);
 
@@ -168,6 +171,7 @@ export default function SearchPanel({
         return;
       }
       alert(t("search.applied"));
+      onApply?.();
     } catch {
       alert("Failed to connect to server");
     }
@@ -246,14 +250,14 @@ export default function SearchPanel({
       <div className="form-row mt-8">
         <div className="form-group">
           <label>{t("search.peakStat")} {isProSearch && !isEffectivePro && "🔒"}</label>
-          <select value={peakStat} onChange={e => { const v = e.target.value as StatName | ""; if (v && !isEffectivePro) { onShowLicensePrompt?.(); return; } setPeakStat(v); }}>
+          <select value={peakStat} onChange={e => { const v = e.target.value as StatName | ""; if (v && !isEffectivePro) { setProLockedNotice(true); return; } setProLockedNotice(false); setPeakStat(v); }}>
             <option value="">{t("search.any")}</option>
             {STAT_NAMES.map(s => <option key={s} value={s}>{s}</option>)}
           </select>
         </div>
         <div className="form-group">
           <label>{t("search.dumpStat")} {isProSearch && !isEffectivePro && "🔒"}</label>
-          <select value={dumpStat} onChange={e => { const v = e.target.value as StatName | ""; if (v && !isEffectivePro) { onShowLicensePrompt?.(); return; } setDumpStat(v); }}>
+          <select value={dumpStat} onChange={e => { const v = e.target.value as StatName | ""; if (v && !isEffectivePro) { setProLockedNotice(true); return; } setProLockedNotice(false); setDumpStat(v); }}>
             <option value="">{t("search.any")}</option>
             {STAT_NAMES.map(s => <option key={s} value={s}>{s}</option>)}
           </select>
@@ -278,7 +282,7 @@ export default function SearchPanel({
         </details>
       </div>
 
-      {isProSearch && !isEffectivePro && (
+      {(proLockedNotice || (isProSearch && !isEffectivePro)) && (
         <div className="pro-notice">
           <span className="lock">🔒</span>
           {t("search.proNotice")}

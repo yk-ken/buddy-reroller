@@ -46,6 +46,13 @@ function AppContent() {
       .catch(() => {});
   };
 
+  const refreshEnv = () => {
+    fetch("/api/detect")
+      .then(r => r.json())
+      .then(setEnv)
+      .catch(() => {});
+  };
+
   const isEffectivePro = (env?.isPro ?? false) || licenseStatus.activated;
 
   if (loading) {
@@ -106,9 +113,10 @@ function AppContent() {
           isLicenseActive={licenseStatus.activated}
           showLicensePrompt={showLicensePrompt}
           onShowLicensePrompt={() => setTab("settings")}
+          onApply={refreshEnv}
         />
       </div>
-      {tab === "collection" && <CollectionPanel />}
+      {tab === "collection" && <CollectionPanel onApply={refreshEnv} />}
       {tab === "encyclopedia" && <EncyclopediaPanel />}
       {tab === "settings" && (
         <div className="card">
